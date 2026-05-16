@@ -42,14 +42,19 @@ public class Journal
             {
                 string[] parts = line.Split("|");
 
-                Entry entry = new Entry();
+                if (parts.Length == 3)
+                {
+                    Entry entry = new Entry();
 
-                entry._date = parts[0];
-                entry._promptText = parts[1];
-                entry._entryText = parts[2];
+                    entry._date = parts[0];
+                    entry._promptText = parts[1];
+                    entry._entryText = parts[2];
 
-                _entries.Add(entry);
+                    _entries.Add(entry);
+                }
             }
+
+            Console.WriteLine("Journal loaded successfully!");
         }
         else
         {
