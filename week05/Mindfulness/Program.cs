@@ -1,9 +1,10 @@
 using System;
 
 // Creativity:
-// Added a Gratitude Activity.
-// Added activity statistics.
-// Prevented duplicate prompts until all prompts are used.
+// Added a Gratitude Activity that extends the Activity base class.
+// Users can list things they are grateful for and review their entries.
+// This exceeds the core requirements by providing an additional
+// mindfulness activity beyond the three required activities.
 
 class Program
 {
@@ -11,15 +12,16 @@ class Program
     {
         string choice = "";
 
-        while (choice != "4")
+        while (choice != "5")
         {
             Console.Clear();
 
             Console.WriteLine("Menu Options:");
-            Console.WriteLine("1. Start Breathing Activity");
-            Console.WriteLine("2. Start Reflection Activity");
-            Console.WriteLine("3. Start Listing Activity");
-            Console.WriteLine("4. Quit");
+            Console.WriteLine("  1. Start Breathing Activity");
+            Console.WriteLine("  2. Start Reflection Activity");
+            Console.WriteLine("  3. Start Listing Activity");
+            Console.WriteLine("  4. Start Gratitude Activity");
+            Console.WriteLine("  5. Quit");
             Console.WriteLine();
 
             Console.Write("Select a choice from the menu: ");
@@ -40,6 +42,21 @@ class Program
                 ListingActivity activity = new ListingActivity();
                 activity.Run();
             }
+            else if (choice == "4")
+            {
+                GratitudeActivity activity = new GratitudeActivity();
+                activity.Run();
+            }
+            else if (choice == "5")
+            {
+                Console.WriteLine("Goodbye!");
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Press Enter to continue.");
+                Console.ReadLine();
+            }
         }
     }
 }
+

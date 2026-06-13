@@ -13,7 +13,7 @@ public class Activity
         _description = description;
     }
 
-    public int GetDuration()
+    protected int GetDuration()
     {
         return _duration;
     }
@@ -21,7 +21,9 @@ public class Activity
     public void DisplayStartingMessage()
     {
         Console.Clear();
-        Console.WriteLine($"Welcome to the {_name} Activity.\n");
+
+        Console.WriteLine($"Welcome to the {_name} Activity.");
+        Console.WriteLine();
         Console.WriteLine(_description);
         Console.WriteLine();
 
@@ -29,8 +31,10 @@ public class Activity
         _duration = int.Parse(Console.ReadLine());
 
         Console.WriteLine();
-        Console.WriteLine("Get ready...");
+        Console.WriteLine("Prepare to begin...");
         ShowSpinner(3);
+
+        Console.WriteLine();
     }
 
     public void DisplayEndingMessage()
@@ -40,8 +44,12 @@ public class Activity
         ShowSpinner(3);
 
         Console.WriteLine();
-        Console.WriteLine($"You have completed another {_duration} seconds of the {_name} Activity.");
+        Console.WriteLine(
+            $"You have completed another {_duration} seconds of the {_name} Activity."
+        );
+
         ShowSpinner(3);
+        Console.WriteLine();
     }
 
     protected void ShowSpinner(int seconds)
@@ -50,19 +58,19 @@ public class Activity
 
         DateTime endTime = DateTime.Now.AddSeconds(seconds);
 
-        int i = 0;
+        int index = 0;
 
         while (DateTime.Now < endTime)
         {
-            Console.Write(spinner[i]);
+            Console.Write(spinner[index]);
             Thread.Sleep(250);
             Console.Write("\b \b");
 
-            i++;
+            index++;
 
-            if (i >= spinner.Length)
+            if (index >= spinner.Length)
             {
-                i = 0;
+                index = 0;
             }
         }
     }

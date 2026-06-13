@@ -14,8 +14,8 @@ public class ListingActivity : Activity
 
     public ListingActivity()
         : base(
-              "Listing",
-              "This activity will help you reflect on the good things in your life by having you list as many things as you can.")
+            "Listing",
+            "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
     {
     }
 
@@ -29,9 +29,11 @@ public class ListingActivity : Activity
         Console.WriteLine("List as many responses as you can to the following prompt:");
         Console.WriteLine();
 
-        Console.WriteLine($"--- {_prompts[random.Next(_prompts.Count)]} ---");
+        string prompt = _prompts[random.Next(_prompts.Count)];
 
+        Console.WriteLine($"--- {prompt} ---");
         Console.WriteLine();
+
         Console.Write("You may begin in: ");
         ShowCountdown(5);
 
@@ -42,7 +44,12 @@ public class ListingActivity : Activity
         while (DateTime.Now < endTime)
         {
             Console.Write("> ");
-            items.Add(Console.ReadLine());
+            string response = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(response))
+            {
+                items.Add(response);
+            }
         }
 
         Console.WriteLine();
